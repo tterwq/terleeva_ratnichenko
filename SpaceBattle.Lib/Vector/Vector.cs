@@ -13,7 +13,7 @@ public class Vector
 
     public override string ToString()
     {
-        string s = $"Vector({coordinates[0]}";
+        string s = $"({coordinates[0]}";
         for (int i = 1; i < Size; i++)
         {
             s += $", {coordinates[i]}";
@@ -25,6 +25,7 @@ public class Vector
     public int this[int index]
     {
         get { return coordinates[index]; }
+        set { coordinates[index] = value; }
     }
 
     public static Vector operator +(Vector v1, Vector v2)
@@ -61,6 +62,6 @@ public class Vector
 
     public override int GetHashCode()
     {
-        return this.Size.GetHashCode();
+        return String.Join("", coordinates.Select(x => x.ToString())).GetHashCode();
     }
 }
