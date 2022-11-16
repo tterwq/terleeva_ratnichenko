@@ -1,7 +1,7 @@
 name: .NET
 
 on: 
-  push:
+  workflow_dispatch:
     branches: [ "move" ]
   pull_request:
     branches: [ "main" ]
