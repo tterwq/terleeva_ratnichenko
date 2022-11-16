@@ -1,6 +1,6 @@
 name: .NET
 
-on: workflow_dispatch
+on: 
   push:
     branches: [ "move" ]
   pull_request:
