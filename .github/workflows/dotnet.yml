@@ -25,8 +25,7 @@ jobs:
         run: dotnet test -p:CollectCoverage=true -p:CoverletOutput=../coverage/ -p:CoverletOutputFormat=opencover --no-build --verbosity d ./SpaceBattle.Lib.Test
       - name: Codecov
         uses: codecov/codecov-action@v3
-
-flag_management:
+  flag_management:
   default_rules: # the rules that will be followed for any flag added, generally
     carryforward: true
     statuses:
@@ -54,3 +53,4 @@ flag_management:
         target: 20%
       - type: patch
         target: 100%
+
