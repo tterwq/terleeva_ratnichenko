@@ -7,21 +7,34 @@ on:
     branches: [ "main" ]
 
 jobs:
+  before_build:
+  - nuget restore
+  - choco install opencover.portable
+  - choco install codecov
+
   build:
+    project: CodecovProject.sln
+    verbosity: minimal
 
-    runs-on: ubuntu-latest
+  test_script:
+  - OpenCover.Console.exe -register:user -target:"%xunit20%\xunit.console.x86.exe" -targetargs:".\MyUnitTests\bin\Debug\MyUnitTests.dll -noshadow" -filter:"+[UnitTestTargetProject*]* -[MyUnitTests*]*" -output:".\MyProject_coverage.xml"
+  - codecov -f "MyProject_coverage.xml"
+ #   build:
 
-    steps:
-      - uses: actions/checkout@v3
-      - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
-        uses: actions/setup-dotnet@v2
-        with:
-          dotnet-version: 6.x
-      - name: Install dependencies
-        run: dotnet restore ./SpaceBattle.Lib
-      - name: Build
-        run: dotnet build ./SpaceBattle.Lib --configuration Release --no-restore
-      - name: Test
-        run: dotnet test -p:CollectCoverage=true -p:CoverletOutput=../coverage/ -p:CoverletOutputFormat=opencover --no-build --verbosity d ./SpaceBattle.Lib.Test
-      - name: Codecov
-        uses: codecov/codecov-action@v3
+ #     runs-on: ubuntu-latest
+
+  #    steps:
+  #      - uses: actions/checkout@v3
+  #      - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
+  #        uses: actions/setup-dotnet@v2
+  #        with:
+  #          dotnet-version: 6.x
+  #      - name: Install dependencies
+  #        run: dotnet restore ./SpaceBattle.Lib
+  #      - name: Build
+   #       run: dotnet build ./SpaceBattle.Lib --configuration Release --no-restore
+  #      - name: Test
+  #        run: dotnet test -p:CollectCoverage=true -p:CoverletOutput=../coverage/ -p:CoverletOutputFormat=opencover --no-build --verbosity d ./SpaceBattle.Lib.Test
+   #     - name: Codecov
+   #       uses: codecov/codecov-action@v3.1.1
+
