@@ -25,13 +25,3 @@ jobs:
         run: dotnet test -p:CollectCoverage=true -p:CoverletOutput=../coverage/ -p:CoverletOutputFormat=opencover --no-build --verbosity d ./SpaceBattle.Lib.Test
       - name: Codecov
         uses: codecov/codecov-action@v3
-
-  flag_management:
-    default_rules: 
-      carryforward: true
-      statuses:
-        - type: project
-          target: auto
-          threshold: 1%
-        - type: patch
-          target: 90%
