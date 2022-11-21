@@ -1,0 +1,29 @@
+name: .NET
+
+on: 
+  workflow_dispatch:
+  
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: 6.x
+      - name: Install dependencies
+        run: dotnet restore ./SpaceBattle.Lib
+      - name: Build
+        run: dotnet build ./SpaceBattle.Lib --configuration Release --no-restore
+      - name: Test
+        run: dotnet test -p:CollectCoverage=true -p:CoverletOutput=../coverage/ -p:CoverletOutputFormat=opencover ./SpaceBattle.Lib.Test
+      - name: Codecov
+        uses: codecov/codecov-action@v3.1.1
+    
+
