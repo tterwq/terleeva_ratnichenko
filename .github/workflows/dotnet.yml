@@ -2,7 +2,7 @@ name: .NET
 
 on: 
   workflow_dispatch:
-    branches: [ "move" ]
+    branches: [ "move", "rotate" ]
   pull_request:
     branches: [ "main" ]
 
