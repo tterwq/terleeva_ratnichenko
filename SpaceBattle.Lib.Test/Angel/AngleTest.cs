@@ -28,8 +28,8 @@ public class AngleTest
     [Fact]
     public void TestPositiveEqualAngle()
     {
-        var a1 = new Angle(90, 2);
-        var a2 = new Angle(45, 1);
+        var a1 = new Angle(30, 1);
+        var a2 = new Angle(60, 2);
 
         Assert.True(a1 == a2);
     }
@@ -46,7 +46,7 @@ public class AngleTest
     [Fact]
     public void TestPositiveNotEqualAngle()
     {
-        var a1 = new Angle(90, 1);
+        var a1 = new Angle(30, 1);
         var a2 = new Angle(120, 2);
 
         Assert.True(a1 != a2);
@@ -58,7 +58,7 @@ public class AngleTest
         var a1 = new Angle(30, 1);
         var a2 = new Angle(180, 3);
 
-        Assert.False(a1 != a2);
+        Assert.True(a1 != a2);
     }
 
     [Fact]
