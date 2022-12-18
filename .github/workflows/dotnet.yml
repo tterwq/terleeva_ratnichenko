@@ -26,9 +26,9 @@ jobs:
           ls ${{ github.workspace }}
       - name: 2
         run: |
-          ls /SpaceBattle.Lib
+          ls SpaceBattle.Lib
       - name: 3
         run: |
-          ls /SpaceBattle.Lib.Test
+          ls SpaceBattle.Lib.Test
       
     
