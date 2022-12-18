@@ -1,6 +1,9 @@
 name: .NET
 
-on: [push]
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   build:
@@ -21,14 +24,5 @@ jobs:
         run: dotnet test -p:CollectCoverage=true -p:CoverletOutput=../coverage/ -p:CoverletOutputFormat=opencover ./SpaceBattle.Lib.Test
       - name: Codecov
         uses: codecov/codecov-action@v3.1.1
-      - name: List files in the repository.
-        run: |
-          ls ${{ github.workspace }}
-      - name: 2
-        run: |
-          ls SpaceBattle.Lib
-      - name: 3
-        run: |
-          ls SpaceBattle.Lib.Test
       
     
