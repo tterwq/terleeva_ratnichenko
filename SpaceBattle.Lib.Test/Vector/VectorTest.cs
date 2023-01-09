@@ -109,5 +109,4 @@ public class VectorTest
 
         Assert.True(v1.GetHashCode() != v2.GetHashCode());
     }
-
 }
