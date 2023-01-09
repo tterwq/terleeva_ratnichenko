@@ -33,7 +33,7 @@ public class AngleTest
 
         Assert.True(a1 == a2);
     }
-
+    
     [Fact]
     public void TestNegativeEqualAngle()
     {
