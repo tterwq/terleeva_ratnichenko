@@ -1,4 +1,5 @@
 namespace SpaceBattle.Lib;
+
 public class GetPropertyStrategy : IStrategy
 {
     public object Strategy(params object[] args)
