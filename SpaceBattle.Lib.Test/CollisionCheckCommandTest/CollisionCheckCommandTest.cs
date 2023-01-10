@@ -12,8 +12,6 @@ public class CollisionCheckTest
 
         var getStrategy = new GetPropertyStrategy();
         IoC.Resolve<Hwdtech.ICommand>("IoC.Register", "SpaceBattle.GetProperty", (object[] args) => getStrategy.Strategy(args)).Execute();
-
-
     }
 
     [Fact]
