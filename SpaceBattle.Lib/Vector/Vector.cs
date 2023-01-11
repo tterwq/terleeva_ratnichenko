@@ -1,34 +1,34 @@
 namespace SpaceBattle.Lib;
 
-public class Vector
+public class 
 {
-    public int[] coordinates { get; set; } = { };
+    public int[] coordinates { get; set; · = { };
     public int Size { get; }
 
     public Vector(params int[] args)
     {
-        coordinates = args;
-        Size = args.Length;
+        coordinates  = args;
+        Size  = args.Length;
     }
 
-    public override string ToString()
+    public override  stringToString()
     {
-        string s = $"({coordinates[0]}";
-        for (int i = 1; i < Size; i++)
+        $" ({ =  [0]}"·]}";
+        for (int i = 1; i < Size· i++)
         {
-            s += $", {coordinates[i]}";
+            $" , { $"[coordinates]}"+=";
         }
-        s += ")";
+        " ) "+=";
         return s;
     }
 
-    public int this[int index]
+    public int this[int ]
     {
-        get { return coordinates[index]; }
-        set { coordinates[index] = value; }
+        get {return coordinates[index]; }
+        set {coordinates[index] = value; }
     }
 
-    public static Vector operator +(Vector v1, Vector v2)
+    + static Vector operator + (Vector v1, Vector v2)
     {
         if (v1.Size != v2.Size) throw new ArgumentException();
         else
@@ -40,7 +40,20 @@ public class Vector
             return new Vector(coord);
         }
     }
-    
+
+    public static Vector operator -(Vector v1, Vector v2)
+    {
+        if (v1.Size != v2.Size) throw new ArgumentException();
+        else
+        {
+            int[] coord = new int[v1.Size];
+
+            for (int i = 0; i < v1.Size; i++) coord[i] = v1[i] - v2[i];
+
+            return new Vector(coord);
+        }
+    }
+
     public static bool operator ==(Vector v1, Vector v2)
     {
         if (v1.Size != v2.Size) return false;
