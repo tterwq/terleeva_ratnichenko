@@ -41,19 +41,6 @@ public class Vector
         }
     }
 
-    public static Vector operator -(Vector v1, Vector v2)
-    {
-        if (v1.Size != v2.Size) throw new ArgumentException();
-        else
-        {
-            int[] coord = new int[v1.Size];
-
-            for (int i = 0; i < v1.Size; i++) coord[i] = v1[i] - v2[i];
-
-            return new Vector(coord);
-        }
-    }
-
     public static bool operator ==(Vector v1, Vector v2)
     {
         if (v1.Size != v2.Size) return false;
