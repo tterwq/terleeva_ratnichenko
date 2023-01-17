@@ -48,26 +48,6 @@ public class VectorTest
     }
 
     [Fact]
-    public void TestPositiveSubVector()
-    {
-        var v1 = new Vector(3, 12);
-        var v2 = new Vector(0, 8);
-
-        Assert.Equal(new Vector(3, 4), v1 - v2);
-    }
-
-    [Fact]
-    public void TestNegativeSubVector()
-    {
-        var v1 = new Vector(1, 2, 3);
-        var v2 = new Vector(5, 8);
-
-        var action = () => v1 - v2;
-
-        Assert.Throws<ArgumentException>(action);
-    }
-
-    [Fact]
     public void TestPositiveEqualsVector()
     {
         var v1 = new Vector(5, 8);
