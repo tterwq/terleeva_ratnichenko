@@ -46,6 +46,7 @@ public class VectorTest
 
         Assert.Throws<ArgumentException>(action);
     }
+
     [Fact]
     public void TestPositiveSubVector()
     {
