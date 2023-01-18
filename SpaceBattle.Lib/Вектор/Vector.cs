@@ -40,7 +40,8 @@ public class Vector
             return new Vector(coord);
         }
     }
-        public static Vector operator -(Vector v1, Vector v2)
+
+    public static Vector operator -(Vector v1, Vector v2)
     {
         if (v1.Size != v2.Size) throw new ArgumentException();
         else
