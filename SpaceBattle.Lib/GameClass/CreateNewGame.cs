@@ -13,7 +13,7 @@ public class CreateNewGame : IStrategy
     public object Strategy(params object[] args)
     {
         Queue<ICommand> queue = new Queue<ICommand>();
-        object scope = new InitGameScope().RunStrategy(quantum);
+        object scope = new InitGameScope().Strategy(quantum);
         return IoC.Resolve<ICommand>("SpaceBattle.Operation.Game.CreateNew", scope, queue);
     }
 }
