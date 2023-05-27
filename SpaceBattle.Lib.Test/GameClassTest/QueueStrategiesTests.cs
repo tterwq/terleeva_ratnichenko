@@ -62,7 +62,7 @@ public class QueueStrategiesTests
         ICommand gameCommand = (ICommand)new CreateNewGame().Strategy();
         gameCommand.Execute();
 
-        IoC.Resolve<ICommand>("GetOutGueue", queue, cmd.Object).Execute();
+        IoC.Resolve<ICommand>("PutInQueue", queue, cmd.Object).Execute();
 
         var cmd1 = IoC.Resolve<ICommand>("GetOutGueue", queue);
         Assert.Equal(cmd.Object, cmd1);
