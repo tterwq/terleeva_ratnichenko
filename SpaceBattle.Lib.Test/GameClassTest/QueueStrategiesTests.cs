@@ -10,12 +10,12 @@ public class QueueStrategiesTests
     public QueueStrategiesTests()
     {
         new InitScopeBasedIoCImplementationCommand().Execute();
-        IoC.Resolve<Hwdtech.ICommand>("Scopes.Current.Set", IoC.Resolve<object>("Scopes.New", IoC.Resolve<object>("Scopes.Root"))).Execute();
+        IoC.Resolve<Hwdtech.ICommand>("SpaceBattle.Scopes.Current.Set", IoC.Resolve<object>("Scopes.New", IoC.Resolve<object>("Scopes.Root"))).Execute();
 
         IoC.Resolve<Hwdtech.ICommand>("IoC.Register", "SpaceBattle.Operation.Game.CreateNew", (object[] args) => new ActionCommand(
             () =>
             {
-                IoC.Resolve<Hwdtech.ICommand>("Scopes.Current.Set", args[0]).Execute();
+                IoC.Resolve<Hwdtech.ICommand>("SpaceBattle.Scopes.Current.Set", args[0]).Execute();
             }
         )).Execute();
     }
@@ -27,12 +27,12 @@ public class QueueStrategiesTests
         var cmd = new Mock<ICommand>();
 
         new InitScopeBasedIoCImplementationCommand().Execute();
-        IoC.Resolve<Hwdtech.ICommand>("Scopes.Current.Set", IoC.Resolve<object>("Scopes.New", IoC.Resolve<object>("Scopes.Root"))).Execute();
+        IoC.Resolve<Hwdtech.ICommand>("SpaceBattle.Scopes.Current.Set", IoC.Resolve<object>("Scopes.New", IoC.Resolve<object>("Scopes.Root"))).Execute();
 
         IoC.Resolve<Hwdtech.ICommand>("IoC.Register", "SpaceBattle.Operation.Game.CreateNew", (object[] args) => new ActionCommand(
             () =>
             {
-                IoC.Resolve<Hwdtech.ICommand>("Scopes.Current.Set", args[0]).Execute();
+                IoC.Resolve<Hwdtech.ICommand>("SpaceBattle.Scopes.Current.Set", args[0]).Execute();
             }
         )).Execute();
 
@@ -50,12 +50,12 @@ public class QueueStrategiesTests
         var cmd = new Mock<ICommand>();
 
         new InitScopeBasedIoCImplementationCommand().Execute();
-        IoC.Resolve<Hwdtech.ICommand>("Scopes.Current.Set", IoC.Resolve<object>("Scopes.New", IoC.Resolve<object>("Scopes.Root"))).Execute();
+        IoC.Resolve<Hwdtech.ICommand>("SpaceBattle.Scopes.Current.Set", IoC.Resolve<object>("Scopes.New", IoC.Resolve<object>("Scopes.Root"))).Execute();
 
         IoC.Resolve<Hwdtech.ICommand>("IoC.Register", "SpaceBattle.Operation.Game.CreateNew", (object[] args) => new ActionCommand(
             () =>
             {
-                IoC.Resolve<Hwdtech.ICommand>("Scopes.Current.Set", args[0]).Execute();
+                IoC.Resolve<Hwdtech.ICommand>("SpaceBattle.Scopes.Current.Set", args[0]).Execute();
             }
         )).Execute();
 

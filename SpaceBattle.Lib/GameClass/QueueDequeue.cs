@@ -1,6 +1,7 @@
 namespace SpaceBattle.Lib;
 
-public class GetOutGueue : IStrategy
+
+public class QueueDequeue : IStrategy
 {
     public object Strategy(params object[] args)
     {

@@ -18,8 +18,8 @@ public class InitGameScope : IStrategy
 
         IoC.Resolve<Hwdtech.ICommand>("IoC.Register", "GetQuantum", (Func<object[], object>)(args => (int)_args[0])).Execute();
 
-        IoC.Resolve<Hwdtech.ICommand>("IoC.Register", "GetOutGueue", (Func<object[], ICommand>)(args => (ICommand)new GetOutGueue().Strategy((Queue<ICommand>)args[0]))).Execute();
-        IoC.Resolve<Hwdtech.ICommand>("IoC.Register", "PutInQueue", (Func<object[], ICommand>)(args => new PutInQueue((Queue<ICommand>)args[0], (ICommand)args[1]))).Execute();
+        IoC.Resolve<Hwdtech.ICommand>("IoC.Register", "QueueDequeue", (Func<object[], ICommand>)(args => (ICommand)new QueueDequeue().Strategy((Queue<ICommand>)args[0]))).Execute();
+        IoC.Resolve<Hwdtech.ICommand>("IoC.Register", "QueueEnqueue", (Func<object[], ICommand>)(args => new QueueEnqueueCommand((Queue<ICommand>)args[0], (ICommand)args[1]))).Execute();
 
         Dictionary<string, IUObject> gameObjects = new Dictionary<string, IUObject>();
         IoC.Resolve<Hwdtech.ICommand>("IoC.Register", "General.Objects", (Func<object[], Dictionary<string, IUObject>>)(args => gameObjects)).Execute();

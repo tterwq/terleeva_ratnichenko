@@ -1,10 +1,11 @@
 namespace SpaceBattle.Lib;
 
-public class PutInQueue : ICommand
+
+public class QueueEnqueueCommand : ICommand
 {
     Queue<ICommand> target;
     ICommand command;
-    public PutInQueue(Queue<ICommand> _target, ICommand cmd)
+    public QueueEnqueueCommand(Queue<ICommand> _target, ICommand cmd)
     {
         this.target = _target;
         this.command = cmd;
