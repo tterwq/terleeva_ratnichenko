@@ -15,7 +15,7 @@ public class ScopeTests
     [Fact]
     public void currentScopeIsEmpty()
     {
-        object scope = new InitGameScope().Strategy(1000);
+        object scope = new InitGameScope().Strategy(500);
 
         Assert.Throws<ArgumentException>(
             () =>
@@ -26,13 +26,13 @@ public class ScopeTests
         Assert.Throws<ArgumentException>(
             () =>
             {
-                IoC.Resolve<ICommand>("GetOutGueue");
+                IoC.Resolve<ICommand>("QueueDequeue");
             }
         );
         Assert.Throws<ArgumentException>(
             () =>
             {
-                IoC.Resolve<ICommand>("PutInQueue");
+                IoC.Resolve<ICommand>("QueueEnqueue");
             }
         );
     }
@@ -41,12 +41,12 @@ public class ScopeTests
     public void CreateNewGameTest()
     {
         new InitScopeBasedIoCImplementationCommand().Execute();
-        IoC.Resolve<Hwdtech.ICommand>("SpaceBattle.Scopes.Current.Set", IoC.Resolve<object>("Scopes.New", IoC.Resolve<object>("Scopes.Root"))).Execute();
+        IoC.Resolve<Hwdtech.ICommand>("Scopes.Current.Set", IoC.Resolve<object>("Scopes.New", IoC.Resolve<object>("Scopes.Root"))).Execute();
 
-        IoC.Resolve<Hwdtech.ICommand>("IoC.Register", "SpaceBattle.Operation.Game.CreateNew", (object[] args) => new ActionCommand(
+        IoC.Resolve<Hwdtech.ICommand>("IoC.Register", "Commands.GameCommand", (object[] args) => new ActionCommand(
             () =>
             {
-                IoC.Resolve<Hwdtech.ICommand>("SpaceBattle.Scopes.Current.Set", args[0]).Execute();
+                IoC.Resolve<Hwdtech.ICommand>("Scopes.Current.Set", args[0]).Execute();
             }
         )).Execute();
 
@@ -60,7 +60,7 @@ public class ScopeTests
         Assert.Throws<Exception>(
             () =>
             {
-                IoC.Resolve<ICommand>("GetOutGueue", new Queue<ICommand>());
+                IoC.Resolve<ICommand>("QueueDequeue", new Queue<ICommand>());
             }
         );
     }
@@ -69,19 +69,19 @@ public class ScopeTests
     public void DeleteGameTest()
     {
         new InitScopeBasedIoCImplementationCommand().Execute();
-        IoC.Resolve<Hwdtech.ICommand>("SpaceBattle.Scopes.Current.Set", IoC.Resolve<object>("Scopes.New", IoC.Resolve<object>("Scopes.Root"))).Execute();
+        IoC.Resolve<Hwdtech.ICommand>("Scopes.Current.Set", IoC.Resolve<object>("Scopes.New", IoC.Resolve<object>("Scopes.Root"))).Execute();
 
-        IoC.Resolve<Hwdtech.ICommand>("IoC.Register", "SpaceBattle.Operation.Game.CreateNew", (object[] args) => new ActionCommand(
+        IoC.Resolve<Hwdtech.ICommand>("IoC.Register", "Commands.GameCommand", (object[] args) => new ActionCommand(
             () =>
             {
-                IoC.Resolve<Hwdtech.ICommand>("SpaceBattle.Scopes.Current.Set", args[0]).Execute();
+                IoC.Resolve<Hwdtech.ICommand>("Scopes.Current.Set", args[0]).Execute();
             }
         )).Execute();
 
         IoC.Resolve<Hwdtech.ICommand>("IoC.Register", "Game.CreateNew", (object[] args) => new CreateNewGame((int)args[0]).Strategy()).Execute();
         IoC.Resolve<Hwdtech.ICommand>("IoC.Register", "Game.DeleteGame", (object[] args) => new DeleteGame()).Execute();
 
-        ICommand gameCommand = IoC.Resolve<ICommand>("Game.CreateNew", 1000);
+        ICommand gameCommand = IoC.Resolve<ICommand>("Game.CreateNew", 500);
         IStrategy deleteGame = IoC.Resolve<IStrategy>("Game.DeleteGame");
         gameCommand.Execute();
 
@@ -95,13 +95,13 @@ public class ScopeTests
         Assert.Throws<ArgumentException>(
             () =>
             {
-                IoC.Resolve<ICommand>("GetOutGueue");
+                IoC.Resolve<ICommand>("QueueDequeue");
             }
         );
         Assert.Throws<ArgumentException>(
             () =>
             {
-                IoC.Resolve<ICommand>("PutInQueue");
+                IoC.Resolve<ICommand>("QueueEnqueue");
             }
         );
     }
