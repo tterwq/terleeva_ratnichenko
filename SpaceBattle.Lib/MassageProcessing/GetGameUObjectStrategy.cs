@@ -2,7 +2,7 @@ namespace SpaceBattle.Lib;
 using Hwdtech;
 
 
-public class GetGameUObjectStrategy : IStrategy  // "Game.Get.UObject"
+public class GetGameUObjectStrategy : IStrategy  
 {
      public object Strategy(params object[] args)
     {

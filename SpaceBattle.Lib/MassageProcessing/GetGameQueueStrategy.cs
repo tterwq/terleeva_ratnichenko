@@ -2,7 +2,7 @@ namespace SpaceBattle.Lib;
 using Hwdtech;
 
 
-public class GetGameQueueStrategy : IStrategy  // "Game.Get.Queue"
+public class GetGameQueueStrategy : IStrategy 
 {
      public object Strategy(params object[] args)
     {
