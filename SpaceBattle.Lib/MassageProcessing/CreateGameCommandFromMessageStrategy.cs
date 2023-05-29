@@ -1,7 +1,7 @@
 namespace SpaceBattle.Lib;
 using Hwdtech;
 
-public class CreateGameCommandFromMessageStrategy : IStrategy  // "Game.Command.Create.FromMessage"
+public class CreateGameCommandFromMessageStrategy : IStrategy  
 {
     public object Strategy(params object[] args)
     {
