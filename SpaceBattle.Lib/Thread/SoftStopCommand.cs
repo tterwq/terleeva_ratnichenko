@@ -15,10 +15,9 @@ public class SoftStopCommand : ICommand
     {
         if (Thread.CurrentThread == stopthread.thread)
         {
-            var receiver = IoC.Resolve<IReceiver>("GetReceiver", id);
+            var receiver = IoC.Resolve<IReceiver>("Get Receiver", id);
             var queue = new BlockingCollection<ICommand>();
 
-            IoC.Resolve<ICommand>("SetReceiver", id, queue).Execute();
 
             new UpdateBehaviourCommand(stopthread, () =>
             {

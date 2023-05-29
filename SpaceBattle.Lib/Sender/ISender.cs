@@ -2,5 +2,5 @@ namespace SpaceBattle.Lib;
 
 public interface ISender
 {
-    void Send(object message);
+    void Send(ICommand cmd);
 }
