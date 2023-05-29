@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceBattle.Lib", "SpaceBat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceBattle.Lib.Test", "SpaceBattle.Lib.Test\SpaceBattle.Lib.Test.csproj", "{D5D885B6-20D2-4E5C-8243-E8762E10E028}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebHttp", "corewcf\WebHttp.csproj", "{35863F2E-AC59-4937-A74B-E61B35F3B218}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{D5D885B6-20D2-4E5C-8243-E8762E10E028}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5D885B6-20D2-4E5C-8243-E8762E10E028}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5D885B6-20D2-4E5C-8243-E8762E10E028}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35863F2E-AC59-4937-A74B-E61B35F3B218}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35863F2E-AC59-4937-A74B-E61B35F3B218}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35863F2E-AC59-4937-A74B-E61B35F3B218}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35863F2E-AC59-4937-A74B-E61B35F3B218}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
