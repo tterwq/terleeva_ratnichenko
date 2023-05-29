@@ -1,5 +1,4 @@
 namespace SpaceBattle.Lib.Test;
-
 using Hwdtech;
 using Hwdtech.Ioc;
 using Moq;
@@ -16,9 +15,7 @@ public class TestInterpretCommand
 
         Mock<IUObject> mockUObject = new Mock<IUObject>();
         mockUObject.Setup(x => x.setProperty(It.IsAny<string>(), It.IsAny<object>()));
-
         gameQueueMap.Add(1, new Queue<SpaceBattle.Lib.ICommand>());
-
         gameUObjectMap.Add(1, mockUObject.Object);
 
         IoC.Resolve<ICommand>("Scopes.Current.Set", IoC.Resolve<object>("Scopes.New", IoC.Resolve<object>("Scopes.Root"))).Execute();
@@ -42,10 +39,8 @@ public class TestInterpretCommand
         mockMessage.SetupGet(x => x.ObjectID).Returns(1);
 
         IoC.Resolve<ICommand>("IoC.Register", "Game.Command.Test", (object[] args) => mockCommand.Object).Execute();
-
         var intepretcmd = new InterpretCommand(mockMessage.Object);
         intepretcmd.Execute();
-
         Assert.True(gameQueueMap[1].Count() == 1);
     }
 
@@ -64,7 +59,6 @@ public class TestInterpretCommand
         mockMessage.SetupGet(x => x.ObjectID).Returns(1);
 
         IoC.Resolve<ICommand>("IoC.Register", "Game.Command.Test", (object[] args) => mockCommand.Object).Execute();
-
         var intepretcmd = new InterpretCommand(mockMessage.Object);
         Assert.Throws<Exception>(() => { intepretcmd.Execute(); });
     }
@@ -84,7 +78,6 @@ public class TestInterpretCommand
         mockMessage.SetupGet(x => x.ObjectID).Returns(22);
 
         IoC.Resolve<ICommand>("IoC.Register", "Game.Command.Test", (object[] args) => mockCommand.Object).Execute();
-
         var intepretcmd = new InterpretCommand(mockMessage.Object);
         Assert.Throws<Exception>(() => { intepretcmd.Execute(); });
     }
@@ -104,7 +97,6 @@ public class TestInterpretCommand
         mockMessage.SetupGet(x => x.ObjectID).Returns(1);
 
         IoC.Resolve<ICommand>("IoC.Register", "Game.Command.Test", (object[] args) => mockCommand.Object).Execute();
-
         var intepretcmd = new InterpretCommand(mockMessage.Object);
         Assert.Throws<Exception>(() => { intepretcmd.Execute(); });
     }
