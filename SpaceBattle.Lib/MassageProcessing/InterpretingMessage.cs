@@ -1,6 +1,5 @@
 namespace SpaceBattle.Lib;
 
-
 public interface IInterpretingMessage
 {
     public int GameID { get; }
