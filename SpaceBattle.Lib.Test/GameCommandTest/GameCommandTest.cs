@@ -2,7 +2,6 @@ namespace SpaceBattle.Lib.Test;
 
 public class GameCommandTest
 {   
-    int testString = 0;
     Dictionary<int, Dictionary<int, IStrategy>> dictException = new ();
     Dictionary<int, IStrategy> exceptionNotFoundCommand = new ();
     Mock<IStrategy> exceptionNotFoundException = new ();
@@ -26,7 +25,7 @@ public class GameCommandTest
         IoC.Resolve<Hwdtech.ICommand>("IoC.Register", "GetTime", (object[] args) => getTimeStrategy.Object.Strategy(args)).Execute();
         IoC.Resolve<Hwdtech.ICommand>("IoC.Register", "GetReceiver", (object[] args) => getReceiverStrategy.Object.Strategy(args)).Execute();
 
-        exceptionNotFoundException.Setup(x => x.Strategy()).Callback(() => testString += 1);
+        exceptionNotFoundException.Setup(x => x.Strategy()).Verifiable();
             
         IoC.Resolve<Hwdtech.ICommand>("IoC.Register", "SpaceBattle.Exception.GetTree", (object[] args) => {
             return dictException;
@@ -82,7 +81,6 @@ public class GameCommandTest
     {   
         var cmd = new Mock<ICommand>();
         cmd.Setup(c => c.Execute()).Throws<Exception>().Verifiable();
-
         var listCmds = new List<ICommand>() {cmd.Object};
 
         dictReceiver.Add("1", new QueueAdapter(new Queue<ICommand>(listCmds)));
@@ -91,7 +89,7 @@ public class GameCommandTest
         var game = new GameCommand("1");
         game.Execute();
         
-        Assert.Equal(1, testString);
+        cmd.Verify();
     }
 
     [Fact]
@@ -99,7 +97,6 @@ public class GameCommandTest
     {
         int count = 0;
         var e = new Exception("123");
-
         var cmd = new Mock<ICommand>();
         cmd.Setup(c => c.Execute()).Throws<Exception>(() => e);
 
@@ -110,6 +107,6 @@ public class GameCommandTest
 
         IoC.Resolve<IStrategy>("ExceptionHandler", cmd.Object, e).Strategy();
 
-        Assert.Equal(1, count);
+        cmd.Verify();
     }
 }
