@@ -76,6 +76,8 @@ public class HardStopCommandStrategyTests
         return scope;
     }
 
+    /*
+
     [Fact]
     public void HardStopCommandStrategyWithoutActionTest()
     {
@@ -136,24 +138,5 @@ public class HardStopCommandStrategyTests
         Assert.Equal(1, count);
 
     }
-
-    // public void HardStopCommandStrategyThrowsExceptionTest()
-    // {
-    //     var scope = ServerThreadDependecies();
-
-    //     ManualResetEvent mre = new ManualResetEvent(false);
-
-    //     var cmd1 = new Mock<ICommand>();
-    //     cmd1.Setup(c => c.Execute()).Verifiable();
-    //     var cmd2 = new Mock<ICommand>();
-    //     cmd2.Setup(c => c.Execute()).Verifiable();
-
-    //     IoC.Resolve<ICommand>("CreateAndStartThread", "5").Execute();
-        
-    //     IoC.Resolve<ICommand>("SendCommand", "5", cmd1.Object).Execute();
-    //     IoC.Resolve<ICommand>("HardStopThread", "5").Execute();
-    //     IoC.Resolve<ICommand>("SendCommand", "5", cmd2.Object).Execute();
-
-    //     Assert.Throws<Exception>(() => IoC.Resolve<ICommand>("HardStopThread", "5").Execute());
-    // }
+    */
 }

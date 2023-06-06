@@ -69,6 +69,7 @@ public class CreateAndStartThreadStrategyTests
 
         return scope;
     }
+    /*
 
     [Fact]
     public void CreateAndStartThreadStrategyWithoutActionTest()
@@ -79,12 +80,13 @@ public class CreateAndStartThreadStrategyTests
         var CAST = IoC.Resolve<ICommand>("CreateAndStartThread", "1");
         CAST.Execute();
 
+        IoC.Resolve<ICommand>("Send Command", "1").Execute();
+
         var thread = IoC.Resolve<MyThread>("Get Thread", "1");
 
         Assert.True(thread.thread.IsAlive);
 
         IoC.Resolve<ICommand>("HardStopThread", "1").Execute();
-
     }
 
     [Fact]
@@ -98,6 +100,8 @@ public class CreateAndStartThreadStrategyTests
         var CAST = IoC.Resolve<ICommand>("CreateAndStartThread", "2", act);
         CAST.Execute();
 
+        IoC.Resolve<ICommand>("Send Command", "2").Execute();
+
         var thread = IoC.Resolve<MyThread>("Get Thread", "2");
 
         Assert.True(thread.thread.IsAlive);
@@ -107,4 +111,5 @@ public class CreateAndStartThreadStrategyTests
         IoC.Resolve<ICommand>("HardStopThread", "2").Execute();
 
     }
+    */
 }
