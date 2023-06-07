@@ -1,19 +1,20 @@
-using Hwdtech;
-
-
 namespace SpaceBattle.Lib;
+using Hwdtech;
 
 public class CreateNewGame : IStrategy
 {
     int quantum;
-    public CreateNewGame(int _quantum = 500)
+    string scopeid;
+    public CreateNewGame(string scopeid, int quantum = 1000)
     {
-        quantum = _quantum;
+        this.quantum = quantum;
+        this.scopeid = scopeid;
     }
     public object Strategy(params object[] args)
     {
         Queue<ICommand> queue = new Queue<ICommand>();
-        object scope = new InitGameScope().Strategy(quantum);
-        return IoC.Resolve<ICommand>("Commands.GameCommand", scope, queue);
+        object newscope = new InitGameScope().Strategy(scopeid, quantum);
+
+        return IoC.Resolve<ICommand>("Commands.GameCommand", newscope, queue);
     }
 }
