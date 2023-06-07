@@ -7,10 +7,12 @@ namespace SpaceBattle.Lib.Test;
 
 public class GameObjectsTests
 {
+    Dictionary<string, object> scopes = new Dictionary<string, object>();
     public GameObjectsTests()
     {
         new InitScopeBasedIoCImplementationCommand().Execute();
-        Dictionary<string, object> scopes = new Dictionary<string, object>();
+        IoC.Resolve<Hwdtech.ICommand>("Scopes.Current.Set", IoC.Resolve<object>("Scopes.New", IoC.Resolve<object>("Scopes.Root"))).Execute();
+
         var GetScope = new Mock<IStrategy>();
         GetScope.Setup(o => o.Strategy(It.IsAny<Object[]>())).Returns((object[] args) => scopes[(string)args[0]]);
         IoC.Resolve<Hwdtech.ICommand>("IoC.Register", "Game.GetScope", (object[] args) => GetScope.Object.Strategy(args)).Execute();
@@ -20,9 +22,6 @@ public class GameObjectsTests
     [Fact]
     public void getItemTest()
     {
-        new InitScopeBasedIoCImplementationCommand().Execute();
-        IoC.Resolve<Hwdtech.ICommand>("Scopes.Current.Set", IoC.Resolve<object>("Scopes.New", IoC.Resolve<object>("Scopes.Root"))).Execute();
-
         IoC.Resolve<Hwdtech.ICommand>("IoC.Register", "Commands.GameCommand", (object[] args) => new ActionCommand(
             () =>
             {
@@ -45,9 +44,6 @@ public class GameObjectsTests
     [Fact]
     public void removeItemTest()
     {
-        new InitScopeBasedIoCImplementationCommand().Execute();
-        IoC.Resolve<Hwdtech.ICommand>("Scopes.Current.Set", IoC.Resolve<object>("Scopes.New", IoC.Resolve<object>("Scopes.Root"))).Execute();
-
         IoC.Resolve<Hwdtech.ICommand>("IoC.Register", "Commands.GameCommand", (object[] args) => new ActionCommand(
             () =>
             {
@@ -70,9 +66,6 @@ public class GameObjectsTests
     [Fact]
     public void getItemTestObjectNotExists()
     {
-        new InitScopeBasedIoCImplementationCommand().Execute();
-        IoC.Resolve<Hwdtech.ICommand>("Scopes.Current.Set", IoC.Resolve<object>("Scopes.New", IoC.Resolve<object>("Scopes.Root"))).Execute();
-
         IoC.Resolve<Hwdtech.ICommand>("IoC.Register", "Commands.GameCommand", (object[] args) => new ActionCommand(
             () =>
             {

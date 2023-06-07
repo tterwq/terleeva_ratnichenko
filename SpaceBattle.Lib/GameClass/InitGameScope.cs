@@ -5,7 +5,6 @@ public class InitGameScope : IStrategy
 {
     public object Strategy(params object[] _args)
     {
-
         object scope = IoC.Resolve<object>("Scopes.Current");
         object scopenew = IoC.Resolve<object>("Game.GetScope", (string)_args[0]);
 
@@ -19,8 +18,8 @@ public class InitGameScope : IStrategy
         Dictionary<string, IUObject> objects = new Dictionary<string, IUObject>();
 
         IoC.Resolve<Hwdtech.ICommand>("IoC.Register", "General.Objects", (Func<object[], Dictionary<string, IUObject>>)(args => objects)).Execute();
-        IoC.Resolve<Hwdtech.ICommand>("IoC.Register", "SpaceBattle.GetObject", (Func<object[], IUObject>)(args => (IUObject)new GetItem().Strategy(args[0]))).Execute();
-        IoC.Resolve<Hwdtech.ICommand>("IoC.Register", "SpaceBattle.RemoveObject", (Func<object[], ICommand>)(args => new RemoveItemCommand((string)args[0]))).Execute();
+        IoC.Resolve<Hwdtech.ICommand>("IoC.Register", "General.GetItem", (Func<object[], IUObject>)(args => (IUObject)new GetItem().Strategy(args[0]))).Execute();
+        IoC.Resolve<Hwdtech.ICommand>("IoC.Register", "General.RemoveItem", (Func<object[], ICommand>)(args => new RemoveItemCommand((string)args[0]))).Execute();
 
         IoC.Resolve<Hwdtech.ICommand>("Scopes.Current.Set", scope).Execute();
 
