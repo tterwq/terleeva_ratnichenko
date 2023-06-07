@@ -24,11 +24,12 @@ public class SoftStopStrategy : IStrategy
             
             if (action != null)
             {
-                action();
+                var cmd = new ActionCommand(action);
+                IoC.Resolve<ICommand>("Send Command", id, cmd);
+                cmd.Execute();
             }
         };
 
-        ICommand cmd = IoC.Resolve<ICommand>("Send Command", id, new ActionCommand(act));
-        return cmd;
+        return  new ActionCommand(act);
     }
 }

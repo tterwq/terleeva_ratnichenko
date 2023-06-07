@@ -28,7 +28,9 @@ public class CreateAndStartStrategy : IStrategy
             
             if (action != null)
             {
-                action();
+                var cmd = new ActionCommand(action);
+                IoC.Resolve<ICommand>("Send Command", id, cmd);
+                cmd.Execute();
             }
         };
 

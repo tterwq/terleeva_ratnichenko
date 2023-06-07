@@ -13,19 +13,23 @@ public class SoftStopCommand : ICommand
 
     public void Execute()
     {
-        if (Thread.CurrentThread == stopthread.thread)
+         if (Thread.CurrentThread == stopthread.thread)
         {
             var receiver = IoC.Resolve<IReceiver>("Get Receiver", id);
-            var queue = new BlockingCollection<ICommand>();
-
-
             new UpdateBehaviourCommand(stopthread, () =>
             {
                 if (receiver.isEmpty())
                 {
                     stopthread.Stop();
                 }
-            });
+                else
+                {
+                    var cmd = receiver.Receive();
+
+                    cmd.Execute();
+                }
+
+            }).Execute();
         }
         else
         {
