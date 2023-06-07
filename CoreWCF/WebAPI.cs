@@ -11,7 +11,7 @@ internal class WebApi : IWebApi
         try
         {
             var threadId = IoC.Resolve<string>("GetThreadID", param.gameId);
-            IoC.Resolve<SpaceBattle.Lib.ICommand>("SendCommand", threadId, IoC.Resolve<SpaceBattle.Lib.ICommand>("CreateMessage", param)).Execute();
+            IoC.Resolve<SpaceBattle.Lib.ICommand>("Send Command", threadId, IoC.Resolve<SpaceBattle.Lib.ICommand>("CreateMessage", param)).Execute();
         }
         catch (System.Exception e)
         {
