@@ -10,6 +10,11 @@ public class GameObjectsTests
     public GameObjectsTests()
     {
         new InitScopeBasedIoCImplementationCommand().Execute();
+        Dictionary<string, object> scopes = new Dictionary<string, object>();
+        var GetScope = new Mock<IStrategy>();
+        GetScope.Setup(o => o.Strategy(It.IsAny<Object[]>())).Returns((object[] args) => scopes[(string)args[0]]);
+        IoC.Resolve<Hwdtech.ICommand>("IoC.Register", "Game.GetScope", (object[] args) => GetScope.Object.Strategy(args)).Execute();
+        scopes.Add("1", IoC.Resolve<object>("Scopes.New", IoC.Resolve<object>("Scopes.Root")));
     }
 
     [Fact]
@@ -25,7 +30,7 @@ public class GameObjectsTests
             }
         )).Execute();
 
-        ICommand gameCommand = (ICommand)new CreateNewGame().Strategy();
+        ICommand gameCommand = (ICommand)new CreateNewGame("1").Strategy();
         gameCommand.Execute();
 
         var mockObj = new Mock<IUObject>();
@@ -50,7 +55,7 @@ public class GameObjectsTests
             }
         )).Execute();
 
-        ICommand gameCommand = (ICommand)new CreateNewGame().Strategy();
+        ICommand gameCommand = (ICommand)new CreateNewGame("1").Strategy();
         gameCommand.Execute();
 
         var mockObj = new Mock<IUObject>();
@@ -75,7 +80,7 @@ public class GameObjectsTests
             }
         )).Execute();
 
-        ICommand gameCommand = (ICommand)new CreateNewGame().Strategy();
+        ICommand gameCommand = (ICommand)new CreateNewGame("1").Strategy();
         gameCommand.Execute();
 
         var mockObj = new Mock<IUObject>();
