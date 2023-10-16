@@ -4,14 +4,14 @@ using Hwdtech;
 namespace SpaceBattle.Lib;
 
 [ServiceBehavior(IncludeExceptionDetailInFaults = true)]
-internal class WebApi : IWebApi
+public class WebApi : IWebApi
 {
     public void GetOperationMessage(MessageContract mc)
     {
         try
         {
-            var threadId = IoC.Resolve<Dictionary<string, object>>("GetThreadID", mc);
-            IoC.Resolve<ICommand>("SendCommand", threadId, IoC.Resolve<ICommand>("CreateCommandFromMessage", mc)).Execute();
+            var threadID = IoC.Resolve<Dictionary<string, object>>("GetThreadID", mc);
+            IoC.Resolve<ICommand>("SendCommand", threadID).Execute();
 
         }
         catch (Exception e)
