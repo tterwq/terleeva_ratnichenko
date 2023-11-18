@@ -23,7 +23,7 @@ public class APITest
 		var ss = new Mock<IStrategy>();
 		ss.Setup(o => o.Strategy(It.IsAny<object[]>())).Returns(command.Object);
 
-		IoC.Resolve<Hwdtech.ICommand>("IoC.Register", "GetThreadID", (object[] args) => fs.Object.Strategy()).Execute();
+		IoC.Resolve<Hwdtech.ICommand>("IoC.Register", "SerializeContract", (object[] args) => fs.Object.Strategy()).Execute();
 		IoC.Resolve<Hwdtech.ICommand>("IoC.Register", "SendCommand", (object[] args) => ss.Object.Strategy()).Execute();
 
 		var mc = new MessageContract();
@@ -52,7 +52,7 @@ public class APITest
 		var ss = new Mock<IStrategy>();
 		ss.Setup(o => o.Strategy(It.IsAny<object[]>())).Returns(command.Object);
 
-		IoC.Resolve<Hwdtech.ICommand>("IoC.Register", "GetThreadID", (object[] args) => fs.Object.Strategy()).Execute();
+		IoC.Resolve<Hwdtech.ICommand>("IoC.Register", "SerializeContract", (object[] args) => fs.Object.Strategy()).Execute();
 		IoC.Resolve<Hwdtech.ICommand>("IoC.Register", "SendCommand", (object[] args) => ss.Object.Strategy()).Execute();
 
 		var mc = new MessageContract();

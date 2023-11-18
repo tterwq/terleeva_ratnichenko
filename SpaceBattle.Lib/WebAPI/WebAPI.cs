@@ -10,8 +10,8 @@ public class WebApi : IWebApi
     {
         try
         {
-            var threadID = IoC.Resolve<Dictionary<string, object>>("GetThreadID", mc);
-            IoC.Resolve<ICommand>("SendCommand", threadID).Execute();
+            var obj= IoC.Resolve<Dictionary<string, object>>("SerializeContract", mc);
+            IoC.Resolve<ICommand>("SendCommand", obj).Execute();
 
         }
         catch (Exception e)
