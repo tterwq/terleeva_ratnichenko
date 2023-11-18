@@ -1,0 +1,5 @@
+ignore:
+  - "SpaceBattle.Lib.Test"
+  - "SpaceBattle.Lib/API"
+  - "SpaceBattle.Lib/Adapter"
+  
