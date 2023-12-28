@@ -1,5 +1,5 @@
-using Hwdtech;
 namespace SpaceBattle.Lib;
+using Hwdtech;
 
 public class CreateGameObjectsStrategy : IStrategy
 {
