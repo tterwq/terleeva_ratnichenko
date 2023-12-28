@@ -3,12 +3,9 @@ using System.Collections;
 
 public class GetPositionIterator : IEnumerator
 {
-    private Vector position;
-    private Vector step;
-    private int currentObj;
+    private Vector position, step;
+    private int currentObj, count, i;
     private IEnumerator enumerator;
-    private int count;
-    private int i;
     public GetPositionIterator(Vector startPosition, Vector step, IEnumerable<int> queuePositions)
     {
         if (queuePositions.Count() % 2 != 0)
